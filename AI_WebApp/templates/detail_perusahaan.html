@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Perusahaan {{ company_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        /* Detail container */
+        .detail-container {
+            width: 500px;
+            padding: 30px;
+            margin-top: 40px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .detail-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        strong {
+            color: #007bff;
+            font-weight: 600;
+        }
+        
+        /* Tabel styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f1f1f1;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        td {
+            color: #333;
+            font-size: 16px;
+        }
+        
+        /* Buttons styling */
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        button:active {
+            background-color: #00408d;
+        }
+    </style>
+</head>
+<body>
+    <div class="detail-container">
+        <h1>{{ company_name }}</h1>
+        
+        <!-- Tabel Data Perusahaan -->
+        <table>
+            <tr>
+                <th>Ticker</th>
+                <td>{{ ticker }}</td>
+            </tr>
+            <tr>
+                <th>Sektor</th>
+                <td>{{ sector }}</td>
+            </tr>
+            <tr>
+                <th>Industri</th>
+                <td>{{ industry }}</td>
+            </tr>
+            <tr>
+                <th>Market Cap</th>
+                <td>{{ market_cap }}</td>
+            </tr>
+            <tr>
+                <th>Harga Penutupan Sebelumnya</th>
+                <td>{{ previous_close }}</td>
+            </tr>
+        </table>
+
+        <!-- Tombol Aksi -->
+        <button onclick="window.location.href='/prediksi/{{ ticker }}'">Lihat Prediksi</button>
+        <button onclick="window.location.href='/keuangan/{{ ticker }}'">Detail Keuangan</button>
+    </div>
+</body>
+</html>

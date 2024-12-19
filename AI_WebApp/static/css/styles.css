@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+.btn-detail {
+    background-color: #007BFF;
+    color: white;
+}
+.btn-try {
+    background-color: #28A745;
+    color: white;
+}
+button:hover {
+    opacity: 0.9;
+}

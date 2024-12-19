@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Saham - {{ ticker }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            padding-top: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2, h4 {
+            color: #007bff;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .prediction-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .up {
+            color: green;
+        }
+        .down {
+            color: red;
+        }
+        .chart-container {
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Prediksi Saham - {{ ticker }}</h2>
+        <p class="text-muted">Data ini memberikan hasil analisis saham {{ ticker }} berdasarkan model prediksi teknikal dan fundamental.</p>
+
+        <!-- Prediksi Fundamental -->
+        <div class="card">
+            <div class="card-body">
+                <h4>Prediksi Fundamental</h4>
+                <p>Prediksi perubahan harga saham pada kuartal depan:</p>
+                <div>
+                    <span class="prediction-value 
+                        {% if q_prediction > 0 %}
+                            up
+                        {% else %}
+                            down
+                        {% endif %}
+                    ">
+                        {{ q_prediction }}%
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grafik Harga Saham -->
+        <div class="chart-container">
+            <h4>Grafik Prediksi Harga Saham Mingguan</h4>
+            {{ chart_pred | safe }}
+        </div>
+    </div>
+</body>
+</html>

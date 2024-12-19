@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Portfolio Optimization</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* List saham container */
+        .list-saham {
+            width: 400px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-saham h3 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .list-saham ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list-saham li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .list-saham li:hover {
+            background-color: #e8f1ff;
+            cursor: pointer;
+        }
+
+        .list-saham .ticker {
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .list-saham .company-name {
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* Detail saham container */
+        .detail-saham {
+            width: 350px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; /* Default hidden */
+        }
+
+        .detail-saham h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.3em;
+        }
+
+        .detail-saham p {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .detail-saham button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .detail-saham button:hover {
+            background-color: #0056b3;
+        }
+
+        .detail-saham button:last-child {
+            background-color: #28a745;
+        }
+
+        .detail-saham button:last-child:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- List of stocks -->
+    <div class="list-saham">
+        <h3>Daftar Saham</h3>
+        <ul>
+            <li onclick="showDetail('BBRI.JK', 'Bank Rakyat Indonesia')">
+                <span class="ticker">BBRI.JK</span>
+                <span class="company-name">Bank Rakyat Indonesia</span>
+            </li>
+            <li onclick="showDetail('BMRI.JK', 'Bank Mandiri')">
+                <span class="ticker">BMRI.JK</span>
+                <span class="company-name">Bank Mandiri</span>
+            </li>
+            <li onclick="showDetail('BBCA.JK', 'Bank Central Asia')">
+                <span class="ticker">BBCA.JK</span>
+                <span class="company-name">Bank Central Asia</span>
+            </li>
+            <li onclick="showDetail('ASII.JK', 'Astra International')">
+                <span class="ticker">ASII.JK</span>
+                <span class="company-name">Astra International</span>
+            </li>
+            <li onclick="showDetail('UNVR.JK', 'Unilever Indonesia')">
+                <span class="ticker">UNVR.JK</span>
+                <span class="company-name">Unilever Indonesia</span>
+            </li>
+            <li onclick="showDetail('TLKM.JK', 'Telekomunikasi Indonesia')">
+                <span class="ticker">TLKM.JK</span>
+                <span class="company-name">Telekomunikasi Indonesia</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Stock detail -->
+    <div id="detailSaham" class="detail-saham"></div>
+
+    <script>
+        // Function to display stock details
+        function showDetail(ticker, companyName) {
+            const detailContainer = document.getElementById('detailSaham');
+            detailContainer.style.display = 'block';
+            detailContainer.innerHTML = `
+                <h4>${companyName} (${ticker})</h4>
+                <p>Informasi detail tentang ${companyName} akan ditampilkan di sini. Anda dapat melihat prediksi atau detail keuangan saham ini.</p>
+                <button onclick="window.location.href='/detail/${ticker}'">Detail Perusahaan</button>
+                <button onclick="window.location.href='/keuangan/${ticker}'">Detail Keuangan</button>
+                <button onclick="window.location.href='/prediksi/${ticker}'">Lihat Prediksi</button>
+            `;
+        }
+
+        // Example functions for buttons
+        function lihatPrediksi(ticker) {
+            alert(`Lihat prediksi untuk ${ticker}`);
+            // Replace with your backend logic
+        }
+
+        function lihatKeuangan(ticker) {
+            alert(`Lihat detail keuangan untuk ${ticker}`);
+            // Replace with your backend logic
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Keuangan {{ ticker }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2, h4 {
+            color: #007bff;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .table td, .table th {
+            vertical-align: middle;
+            padding-right: 50px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .diff {
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .diff-positive {
+            color: green;
+        }
+        .diff-negative {
+            color: red;
+        }
+        .diff-neutral {
+            color: gray;
+        }
+        .btn-risk {
+            background: linear-gradient(90deg, #ff4b1f, #ff9068);
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-risk:hover {
+            background: linear-gradient(90deg, #ff9068, #ff4b1f);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+        .btn-risk-icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Detail Keuangan Perusahaan: {{ ticker }}</h2>
+        
+        <!-- Grafik Harga Saham -->
+        <div class="card">
+            <div class="card-body">
+                <h4>Harga Saham (3 Bulan Terakhir)</h4>
+                {{ chart | safe }}
+            </div>
+        </div>
+
+        <!-- Tabel Data Keuangan -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h4>Data Keuangan</h4>
+                <table class="table mt-3">
+                    <tr>
+                        <td><strong>Laba Bersih</strong></td>
+                        <td>{{ laba_bersih }}</td>
+                        <td class="diff 
+                            {% if diff_laba_bersih > 0 %}
+                                diff-positive
+                            {% elif diff_laba_bersih < 0 %}
+                                diff-negative
+                            {% else %}
+                                diff-neutral
+                            {% endif %}
+                        "> {{ diff_laba_bersih }}%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Aset</strong></td>
+                        <td>{{ aset }}</td>
+                        <td class="diff 
+                            {% if diff_aset > 0 %}
+                                diff-positive
+                            {% elif diff_aset < 0 %}
+                                diff-negative
+                            {% else %}
+                                diff-neutral
+                                {% endif %}
+                                "> {{ diff_aset }}%</td>
+                            </tr>
+                    <tr>
+                        <td><strong>Total Liabilitas</strong></td>
+                        <td>{{ liabilitas }}</td>
+                        <td class="diff 
+                            {% if diff_liabilitas > 0 %}
+                                diff-positive
+                            {% elif diff_liabilitas < 0 %}
+                                diff-negative
+                            {% else %}
+                                diff-neutral
+                            {% endif %}
+                            "> {{ diff_liabilitas }}%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Ekuitas</strong></td>
+                            <td>{{ ekuitas }}</td>
+                            <td class="diff 
+                            {% if diff_ekuitas > 0 %}
+                            diff-positive
+                            {% elif diff_ekuitas < 0 %}
+                            diff-negative
+                            {% else %}
+                            diff-neutral
+                            {% endif %}
+                            "> {{ diff_ekuitas }}%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revenue</strong></td>
+                            <td>{{ revenue }}</td>
+                            <td class="diff 
+                            {% if diff_revenue > 0 %}
+                            diff-positive
+                            {% elif diff_revenue < 0 %}
+                                diff-negative
+                            {% else %}
+                                diff-neutral
+                            {% endif %}
+                        "> {{ diff_revenue }}%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cash</strong></td>
+                        <td>{{ cash }}</td>
+                        <td class="diff 
+                            {% if diff_cash > 0 %}
+                            diff-positive
+                            {% elif diff_cash < 0 %}
+                                diff-negative
+                                {% else %}
+                                diff-neutral
+                                {% endif %}
+                        "> {{ diff_cash }}%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Capital Expenditure (Capex)</strong></td>
+                        <td>{{ capex }}</td>
+                        <td class="diff 
+                            {% if diff_capex > 0 %}
+                                diff-positive
+                            {% elif diff_capex < 0 %}
+                                diff-negative
+                            {% else %}
+                                diff-neutral
+                            {% endif %}
+                        "> {{ diff_capex }}%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jumlah Saham Beredar</strong></td>
+                        <td>{{ saham_beredar }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-risk">
+                    Lihat Risiko!
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
